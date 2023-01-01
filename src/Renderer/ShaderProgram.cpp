@@ -8,14 +8,14 @@ namespace Renderer
 		GLuint vertexShaderID;
 		if (!createShader(vertexShader, GL_VERTEX_SHADER, vertexShaderID))
 		{
-			std::cerr << "VERTEX::SHADER -> compile error" << std::endl;
+			std::cerr << "Error::ShaderProgram::ShaderProgram ->  compile failed VERTEX" << std::endl;
 			return;
 		}
 
 		GLuint fragmentShaderID;
 		if (!createShader(fragmentShader, GL_FRAGMENT_SHADER, fragmentShaderID))
 		{
-			std::cerr << "FRAGMENT::SHADER -> compile error" << std::endl;
+			std::cerr << "Error::ShaderProgram::ShaderProgram -> compile failed FRAGMENT " << std::endl;
 			glDeleteShader(vertexShaderID);
 			return;
 		}
@@ -32,7 +32,7 @@ namespace Renderer
 		{
 			GLchar infoLog[1024];
 			glGetShaderInfoLog(m_ID, 1024, nullptr, infoLog);
-			std::cerr << "Error::Shader -> Link error" << infoLog << std::endl;
+			std::cerr << "Error::ShaderProgram::ShaderProgram -> Link error " << infoLog << std::endl;
 		}
 		else
 		{
@@ -68,9 +68,13 @@ namespace Renderer
 		glDeleteProgram(m_ID);
 	}
 
-	const void ShaderProgram::use()
+	void ShaderProgram::use() const
 	{
 		glUseProgram(m_ID);
+	}
+	void ShaderProgram::setInt(const std::string& name, const GLint value)
+	{
+		glUniform1i(glGetUniformLocation(m_ID, name.c_str()), value);
 	}
 	bool ShaderProgram::createShader(const std::string& source, const GLenum shaderType, GLuint& shaderID)
 	{

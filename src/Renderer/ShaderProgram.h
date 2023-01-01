@@ -9,8 +9,10 @@ namespace Renderer
 	public:
 		ShaderProgram(const std::string &vertexShader, const std::string &fragmentShader);
 		~ShaderProgram();
-		const bool isCompiled() { return m_isCompiled; }
-		const void use();
+
+		bool isCompiled() const  { return m_isCompiled; }
+		void use() const;
+		void setInt(const std::string& name, const GLint value);
 
 		ShaderProgram() = delete;
 		ShaderProgram(ShaderProgram&) = delete;

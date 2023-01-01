@@ -6,6 +6,7 @@
 namespace Renderer 
 {
 	class ShaderProgram;
+	class Texture;
 }
 
 class ResourceManager
@@ -24,12 +25,19 @@ public:
 														const std::string& fragmentPath);
 	std::shared_ptr<Renderer::ShaderProgram> getShaderProgram(const std::string& shaderName);
 
+	std::shared_ptr<Renderer::Texture> loadTexture(const std::string& textureName, 
+												   const std::string& texturePath);
+	std::shared_ptr<Renderer::Texture> getTexture(const std::string& textureName);
+
 
 private:
-	const std::string getFileStr(const std::string& relativeFilePath);
+	std::string getFileStr(const std::string& relativeFilePath) const;
 
 	typedef std::map<const std::string, std::shared_ptr<Renderer::ShaderProgram>> ShaderProgramsMap;
 	ShaderProgramsMap m_shaderPrograms;
+
+	typedef std::map<const std::string, std::shared_ptr<Renderer::Texture>> TexturesMap;
+	TexturesMap m_textures;
 
 	std::string m_path;
 
