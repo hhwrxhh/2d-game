@@ -11,10 +11,12 @@ add_executable(${PROJECT_NAME}
 				src/Renderer/ShaderProgram.h
 				src/Renderer/Texture.cpp
 				src/Renderer/Texture.h
+				src/Renderer/Sprite.cpp
+				src/Renderer/Sprite.h
 				src/Resources/ResourceManager.cpp
 				src/Resources/ResourceManager.h
 				src/Resources/stb_image.h)
-
+ 
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -25,6 +27,8 @@ target_link_libraries(${PROJECT_NAME} glfw)
 
 add_subdirectory(external/glad)
 target_link_libraries(${PROJECT_NAME} glad)
+
+include_directories(external/glm)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
 
