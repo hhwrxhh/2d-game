@@ -9,12 +9,18 @@
 namespace Renderer
 {
 	Sprite::Sprite(const std::shared_ptr<Texture> pTexture, const std::shared_ptr<ShaderProgram> pShaderProgram,
-		const glm::vec2& position, const glm::vec2& size, const float rotation)
-		: m_pTexture(std::move(pTexture)), m_pShaderProgram(std::move(pShaderProgram)),
-		  m_position(position), m_size(size), m_rotation(rotation)
+		 std::string initialSubTexture, const glm::vec2& position, const glm::vec2& size, const float rotation): m_pTexture(std::move(pTexture)),
+		 m_pShaderProgram(std::move(pShaderProgram)),
+		 m_position(position), 
+		 m_size(size), 
+		 m_rotation(rotation)
 	{
 		const GLfloat vertexCoords[] =
 		{
+			// 2--3    1
+			// | /   / |
+			// 1    3--2
+			
 			// x  y 
 			// first triangle
 			0.f, 0.f,
@@ -27,16 +33,18 @@ namespace Renderer
 			0.f, 0.f
 		};
 
+		auto subTexture = pTexture->getSubTexture(std::move(initialSubTexture));
+
 		const GLfloat textureCoords[] =
 		{
 			// u  v
-			0.f, 0.f,
-			0.f, 1.f,
-			1.f, 1.f,
+			subTexture.leftBottomUV.x, subTexture.leftBottomUV.y,
+			subTexture.leftBottomUV.x, subTexture.rightTopUV.y,
+			subTexture.rightTopUV.x, subTexture.rightTopUV.y,
 
-			1.f, 1.f,
-			1.f, 0.f,
-			0.f, 0.f
+			subTexture. rightTopUV.x, subTexture.rightTopUV.y,
+			subTexture.rightTopUV.x, subTexture.leftBottomUV.y,
+			subTexture.leftBottomUV.x, subTexture.leftBottomUV.y
 		};
 
 		glGenVertexArrays(1, &m_VAO);
@@ -73,11 +81,11 @@ namespace Renderer
 
 		glm::mat4 model(1.f); 
 		 
-		model = glm::translate(model, glm::vec3(m_position, 0.f)); // move to th position that you want (5)
-		model = glm::translate(model, glm::vec3(0.5 * m_size.x, 0.5 * m_size.y, 0.f));	// move back (4)
-		model = glm::rotate(model, glm::radians(m_rotation), glm::vec3(0.f, 0.f, 1.f)); // (3)
-		model = glm::translate(model, glm::vec3(-0.5 * m_size.x, -0.5 * m_size.y, 0.f)); // move to center (2)
-		model = glm::scale(model, glm::vec3(m_size, 1.f)); // (1)
+		model = glm::translate(model, glm::vec3(m_position, 0.f)); // move to th position that you want 
+		model = glm::translate(model, glm::vec3(0.5 * m_size.x, 0.5 * m_size.y, 0.f));	// move back 
+		model = glm::rotate(model, glm::radians(m_rotation), glm::vec3(0.f, 0.f, 1.f)); // 
+		model = glm::translate(model, glm::vec3(-0.5 * m_size.x, -0.5 * m_size.y, 0.f)); // move to center 
+		model = glm::scale(model, glm::vec3(m_size, 1.f)); // 
 
 		glBindVertexArray(m_VAO);
 		m_pShaderProgram->setMatrix4("modelMat", model);

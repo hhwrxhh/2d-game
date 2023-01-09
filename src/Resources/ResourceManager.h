@@ -1,5 +1,6 @@
 #pragma once
 #include <string>
+#include <vector>
 #include <memory>
 #include <map>
 
@@ -29,14 +30,22 @@ public:
 	std::shared_ptr<Renderer::Texture> loadTexture(const std::string& textureName, 
 												   const std::string& texturePath);
 	std::shared_ptr<Renderer::Texture> getTexture(const std::string& textureName);
+	std::shared_ptr<Renderer::Texture> loadTextureAtlas(const std::string textureName,
+														const std::string texturePath,
+														const std::vector<std::string> subTextures,
+														const unsigned int subTextureWidth,
+														const unsigned int subTextureHeight);
 
 
 	std::shared_ptr<Renderer::Sprite> loadSprite(const std::string& spriteName, 
-												const std::string& textureName,
 												const std::string& shaderName,
+												const std::string& textureName,
 												const unsigned int spriteWidth,
-												const unsigned int spriteHeight);
+												const unsigned int spriteHeight,
+												const std::string& subTextureName = "default");
 	std::shared_ptr<Renderer::Sprite> getSprite(const std::string& spriteName);
+
+	
 	 
 
 

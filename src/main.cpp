@@ -107,7 +107,12 @@ int main(int argc, char** argv)
 
         auto tex = resourceManager.loadTexture("DefaultTexture", "res/textures/map_16x16.png");
 
-        auto pSprite = resourceManager.loadSprite("NewSprite", "DefaultTexture", "SpriteShader", 50, 100);
+        std::vector<std::string> subTexturesName = { "block", "topBlock", "bottomBlock", "leftBlock", "rightBlock",
+                                                    "topLeftBlock", "topRightBlock", "bottomLeftBlock", "bottomRightBlock", 
+                                                    "beton" };
+        auto pTextureAtlas = resourceManager.loadTextureAtlas("DefaultTextureAtlas", "res/textures/map_16x16.png", std::move(subTexturesName), 16, 16);
+
+        auto pSprite = resourceManager.loadSprite("NewSprite", "SpriteShader", "DefaultTextureAtlas", 100, 100, "beton");
         pSprite->setPosition(glm::vec2(300, 100));
 
         //vertex 
