@@ -13,8 +13,12 @@ add_executable(${PROJECT_NAME}
 				src/Renderer/Texture.h
 				src/Renderer/Sprite.cpp
 				src/Renderer/Sprite.h
+				src/Renderer/AnimatedSprite.cpp
+				src/Renderer/AnimatedSprite.h
 				src/Resources/ResourceManager.cpp
 				src/Resources/ResourceManager.h
+				src/Game/Game.cpp
+				src/Game/Game.h
 				src/Resources/stb_image.h)
  
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
