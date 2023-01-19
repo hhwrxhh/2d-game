@@ -12,15 +12,19 @@
 #include "../Renderer/Sprite.h"
 #include "../Renderer/AnimatedSprite.h"
 
+ResourceManager::ShaderProgramsMap ResourceManager::m_shaderPrograms;
+ResourceManager::TexturesMap ResourceManager::m_textures;
+ResourceManager::SpritesMap ResourceManager::m_sprites;
+ResourceManager::AnimatedSpritesMap ResourceManager::m_animatedSprites;
+std::string ResourceManager::m_path;
 
-
-ResourceManager::ResourceManager(const std::string& executablePath)
+void ResourceManager::setExecutablePath(const std::string& executablePath)
 {
 	size_t found = executablePath.find_last_of("/\\");
 	m_path = executablePath.substr(0, found);
 }
 
-std::string ResourceManager::getFileStr(const std::string& relativeFilePath) const 
+std::string ResourceManager::getFileStr(const std::string& relativeFilePath)
 {
 	std::ifstream f;
 
@@ -244,6 +248,11 @@ std::shared_ptr<Renderer::AnimatedSprite> ResourceManager::getAnimatedSprite(con
 }
 
 
-
-
-
+void ResourceManager::unloadAllResources()
+{
+	m_shaderPrograms.clear();
+	m_path.clear();
+	m_animatedSprites.clear();
+	m_sprites.clear(); 
+	m_textures.clear();
+}
