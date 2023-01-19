@@ -72,7 +72,7 @@ int main(int argc, char** argv)
 	std::cout << "OpenGL Version " << glGetString(GL_VERSION) << std::endl;
 	std::cout << "Version of ... " << glGetString(GL_VENDOR) << std::endl;
 	
-	glClearColor(0.1, 0.1, 0.1, 1);
+	glClearColor(0.f, 0.f, 0.f, 1);
     
     {
         ResourceManager::setExecutablePath(argv[0]);
