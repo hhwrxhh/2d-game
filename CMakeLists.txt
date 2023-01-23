@@ -7,6 +7,7 @@ set(CMAKE_CXX_STANDARD 17)
 
 add_executable(${PROJECT_NAME} 
 				src/main.cpp
+				
 				src/Renderer/ShaderProgram.cpp
 				src/Renderer/ShaderProgram.h
 				src/Renderer/Texture.cpp
@@ -17,8 +18,13 @@ add_executable(${PROJECT_NAME}
 				src/Renderer/AnimatedSprite.h
 				src/Renderer/VertexBuffer.cpp
 				src/Renderer/VertexBuffer.h
+				src/Renderer/VertexArray.cpp
+				src/Renderer/VertexArray.h
 				src/Renderer/IndexBuffer.cpp
-				src/Renderer/IndexBuffer.h
+				src/Renderer/IndexBuffer.h 
+				src/Renderer/VertexBufferLayout.cpp
+				src/Renderer/VertexBufferLayout.h
+
 				
 				src/Resources/ResourceManager.cpp
 				src/Resources/ResourceManager.h
