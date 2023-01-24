@@ -10,8 +10,6 @@
     {
       "name": "mapTextureAtlas",
       "filePath": "res/textures/map_16x16.png",
-      "width": 128,
-      "height": 128,
       "subTextureWidth": 16,
       "subTextureHeight": 16,
       "subTextures": [
@@ -51,26 +49,82 @@
     {
       "name": "tanksTextureAtlas",
       "filePath": "res/textures/tanks.png",
-      "width": 256,
-      "height": 256,
       "subTextureWidth": 16,
       "subTextureHeight": 16,
-      "subTexture": [
-        "yellowTypel_Top1",
-        "yellowTypel_Top2",
-        "yellowTypel_Leftl",
-        "yellowTypel_Left2",
-        "yellowTypel_Botooml",
-        "yellowTypel_Bottom2",
-        "yellowTypel_Right1",
-        "yellowTypel_Right2"
+      "subTextures": [
+        "yellowType_Top1",
+        "yellowType_Top2",
+        "yellowType_Left1",
+        "yellowType_Left2",
+        "yellowType_Bottom1",
+        "yellowType_Bottom2",
+        "yellowType_Right1",
+        "yellowType_Right2"
       ]
     }
   ],
   "animatedSprites": [
     {
       "name": "tanksAnimatedSprite",
-	  "textureAtlas": "tankTextureAtlas"
+      "textureAtlas": "tanksTextureAtlas",
+      "shader": "SpriteShader",
+      "initialWidth": 100,
+      "initialHeight": 100,
+      "initialSubTexture": "yellowType_Top1",
+      "states": [
+        {
+          "stateName": "tankTopState",
+          "frames": [
+            {
+              "subTexture": "yellowType_Top1",
+              "duration": 500000000
+            },
+            {
+              "subTexture": "yellowType_Top2",
+              "duration": 500000000
+            }
+          ]
+        },
+        {
+          "stateName": "tankLeftState",
+          "frames": [
+            {
+              "subTexture": "yellowType_Left1",
+              "duration": 500000000
+            },
+            {
+              "subTexture": "yellowType_Left2",
+              "duration": 500000000
+            }
+          ]
+        },
+        {
+          "stateName": "tankBottomState",
+          "frames": [
+            {
+              "subTexture": "yellowType_Bottom1",
+              "duration": 500000000
+            },
+            {
+              "subTexture": "yellowType_Bottom2",
+              "duration": 500000000
+            }
+          ]
+        },
+        {
+          "stateName": "tankRightState",
+          "frames": [
+            {
+              "subTexture": "yellowType_Right1",
+              "duration": 500000000
+            },
+            {
+              "subTexture": "yellowType_Right2",
+              "duration": 500000000
+            }
+          ]
+        }
+      ]
     }
   ]
 }

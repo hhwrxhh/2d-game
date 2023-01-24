@@ -56,6 +56,8 @@ public:
 																		const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::AnimatedSprite> getAnimatedSprite(const std::string& spriteName);
 
+	static bool loadJSONResources(const std::string& JSONPath);
+
 private:
 	static std::string getFileStr(const std::string& relativeFilePath);
 	 

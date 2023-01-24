@@ -3,8 +3,6 @@ cmake_minimum_required(VERSION 3.25 FATAL_ERROR)
 set(PROJECT_NAME 2d-game)
 project(${PROJECT_NAME})
 
-set(CMAKE_CXX_STANDARD 17)
-
 add_executable(${PROJECT_NAME} 
 				src/main.cpp
 				
@@ -25,7 +23,7 @@ add_executable(${PROJECT_NAME}
 				src/Renderer/VertexBufferLayout.cpp
 				src/Renderer/VertexBufferLayout.h
 				src/Renderer/Renderer.cpp
-				src/Renderer/Renderer.h
+				src/Renderer/Renderer.h 
 
 				
 				src/Resources/ResourceManager.cpp
@@ -37,6 +35,10 @@ add_executable(${PROJECT_NAME}
 				src/Game/Tank.h
 				src/Resources/stb_image.h)
  
+set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
+
+target_compile_features(${PROJECT_NAME} PUBLIC cxx_std_17)
+
 set(GLFW_BUILD_DOCS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_TESTS OFF CACHE BOOL "" FORCE)
 set(GLFW_BUILD_EXAMPLES OFF CACHE BOOL "" FORCE)
@@ -49,6 +51,8 @@ add_subdirectory(external/glad)
 target_link_libraries(${PROJECT_NAME} glad)
 
 include_directories(external/glm)
+
+include_directories(external/rapidjson/include)
 
 set_target_properties(${PROJECT_NAME} PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin/)
 
