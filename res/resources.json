@@ -1,0 +1,76 @@
+{
+  "shaders": [
+    {
+      "name": "SpriteShader",
+      "filePath_vertex": "res/shaders/vertex_sprite.txt",
+      "filePath_fragment": "res/shaders/fragment_sprite.txt"
+    }
+  ],
+  "textureAtlases": [
+    {
+      "name": "mapTextureAtlas",
+      "filePath": "res/textures/map_16x16.png",
+      "width": 128,
+      "height": 128,
+      "subTextureWidth": 16,
+      "subTextureHeight": 16,
+      "subTextures": [
+        "block",
+        "topBlock",
+        "bottomBlock",
+        "leftBlock",
+        "rightBlock",
+        "topLeftBlock",
+        "topRightBlock",
+        "bottomLeftBlock",
+        "bottomRightBlock",
+        "beton",
+        "topBeton",
+        "bottomBeton",
+        "leftBeton",
+        "rightBeton",
+        "topLeftBeton",
+        "topRight Beton",
+        "bottomLeftBeton",
+        "bottomRight Beton",
+        "water1",
+        "water2",
+        "water3",
+        "trees",
+        "ice",
+        "wall",
+        "eagle",
+        "deadEagle",
+        "nothing",
+        "respawn1",
+        "respawn2",
+        "respawn3",
+        "respawn4"
+      ]
+    },
+    {
+      "name": "tanksTextureAtlas",
+      "filePath": "res/textures/tanks.png",
+      "width": 256,
+      "height": 256,
+      "subTextureWidth": 16,
+      "subTextureHeight": 16,
+      "subTexture": [
+        "yellowTypel_Top1",
+        "yellowTypel_Top2",
+        "yellowTypel_Leftl",
+        "yellowTypel_Left2",
+        "yellowTypel_Botooml",
+        "yellowTypel_Bottom2",
+        "yellowTypel_Right1",
+        "yellowTypel_Right2"
+      ]
+    }
+  ],
+  "animatedSprites": [
+    {
+      "name": "tanksAnimatedSprite",
+	  "textureAtlas": "tankTextureAtlas"
+    }
+  ]
+}

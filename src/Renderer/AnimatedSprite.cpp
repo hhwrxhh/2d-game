@@ -2,7 +2,7 @@
 
 #include "AnimatedSprite.h"
 
-namespace Renderer
+namespace RenderEngine
 {
 	AnimatedSprite::AnimatedSprite(std::shared_ptr<Texture> pTexture, std::shared_ptr<ShaderProgram> pShaderProgram,
 		 std::string initialSubTexture, glm::vec2& position, glm::vec2& size, const float rotation)

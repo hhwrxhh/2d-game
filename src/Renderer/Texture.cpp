@@ -1,6 +1,6 @@
 #include "Texture.h"
 
-namespace Renderer
+namespace RenderEngine
 {
 	Texture::Texture(const GLuint width, GLuint height, const unsigned char* data,
 		const unsigned int channels, const GLenum filter, const GLenum wrapMode)

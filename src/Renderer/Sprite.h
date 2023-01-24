@@ -9,7 +9,7 @@
 #include "IndexBuffer.h"
 #include "VertexArray.h"
 
-namespace Renderer 
+namespace RenderEngine 
 {
 	class Texture;
 	class ShaderProgram;

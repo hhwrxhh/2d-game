@@ -5,8 +5,9 @@
 #include "Sprite.h"
 #include "ShaderProgram.h"
 #include "Texture.h"
+#include "Renderer.h"
 
-namespace Renderer
+namespace RenderEngine
 {
 	Sprite::Sprite(std::shared_ptr<Texture> pTexture, std::shared_ptr<ShaderProgram> pShaderProgram,
 		 std::string initialSubTexture, const glm::vec2& position, const glm::vec2& size, const float rotation): m_pTexture(std::move(pTexture)),
@@ -56,7 +57,7 @@ namespace Renderer
 		textureCoordsLayout.addElementLayoutFloat(2, false);
 		m_vertexArray.addBuffer(m_textureCoordsBuffer, textureCoordsLayout);
 
-		m_indexBuffer.init(indices, 6 * sizeof(GLuint));
+		m_indexBuffer.init(indices, 6);
 
 		m_vertexArray.unbind();
 		m_indexBuffer.unbind();
@@ -79,14 +80,12 @@ namespace Renderer
 		model = glm::translate(model, glm::vec3(-0.5 * m_size.x, -0.5 * m_size.y, 0.f)); // move to center 
 		model = glm::scale(model, glm::vec3(m_size, 1.f)); // 
 
-		m_vertexArray.bind();
 		m_pShaderProgram->setMatrix4("modelMat", model);
 
 		glActiveTexture(GL_TEXTURE0);
 		m_pTexture->bind();
 
-		glDrawElements(GL_TRIANGLES, 6, GL_UNSIGNED_INT, nullptr);
-		m_vertexArray.unbind();
+		Renderer::draw(m_vertexArray, m_indexBuffer, *m_pShaderProgram);
 	}
 
 	void Sprite::setPosition(const glm::vec2& position)

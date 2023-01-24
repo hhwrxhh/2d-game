@@ -121,7 +121,7 @@ bool Game::init()
         "eagle",
         "deadEagle",
         "nothing",
-        "respawn1"
+        "respawn1",
         "respawn2",
         "respawn3",
         "respawn4" };
