@@ -43,20 +43,18 @@ public:
 	static std::shared_ptr<RenderEngine::Sprite> loadSprite(const std::string& spriteName,
 														const std::string& shaderName,
 														const std::string& textureName,
-														const unsigned int spriteWidth,
-														const unsigned int spriteHeight,
 														const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::Sprite> getSprite(const std::string& spriteName);
 
 	static std::shared_ptr<RenderEngine::AnimatedSprite> loadAnimatedSprite(const std::string& spriteName,
 																		const std::string& shaderName,
 																		const std::string& textureName,
-																		const unsigned int spriteWidth,
-																		const unsigned int spriteHeight,
 																		const std::string& subTextureName = "default");
 	static std::shared_ptr<RenderEngine::AnimatedSprite> getAnimatedSprite(const std::string& spriteName);
 
 	static bool loadJSONResources(const std::string& JSONPath);
+
+	static std::vector<std::vector<std::string>>& getLevels() { return m_levels; }
 
 private:
 	static std::string getFileStr(const std::string& relativeFilePath);
@@ -76,4 +74,5 @@ private:
 
 	static std::string m_path;
 
+	static std::vector<std::vector<std::string>> m_levels;
 };

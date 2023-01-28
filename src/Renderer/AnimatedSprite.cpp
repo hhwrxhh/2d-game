@@ -5,8 +5,8 @@
 namespace RenderEngine
 {
 	AnimatedSprite::AnimatedSprite(std::shared_ptr<Texture> pTexture, std::shared_ptr<ShaderProgram> pShaderProgram,
-		 std::string initialSubTexture, glm::vec2& position, glm::vec2& size, const float rotation)
-		: Sprite(std::move(pTexture), std::move(pShaderProgram), std::move(initialSubTexture), position, size, rotation)
+		 std::string initialSubTexture)
+		: Sprite(std::move(pTexture), std::move(pShaderProgram), std::move(initialSubTexture))
 	{
 		m_pCurrentAnimationDurations = m_statesMap.end();
 	}
@@ -16,7 +16,7 @@ namespace RenderEngine
 		m_statesMap.emplace(std::move(state), std::move(subTextureDuration));
 	}
 
-	void AnimatedSprite::render() const 
+	void AnimatedSprite::render(const glm::vec2& position, const glm::vec2& size, const float rotation) const
 	{
 
 		if (m_dirty)
@@ -35,7 +35,7 @@ namespace RenderEngine
 			m_dirty = false;
 		}
 
-		Sprite::render();
+		Sprite::render(position, size, rotation);
 	}
 
 	void AnimatedSprite::setState(const std::string& newState)
