@@ -13,13 +13,11 @@
 #include "../Renderer/ShaderProgram.h"
 #include "../Renderer/Texture.h"
 #include "../Renderer/Sprite.h"
-#include "../Renderer/AnimatedSprite.h"
 
 
 ResourceManager::ShaderProgramsMap ResourceManager::m_shaderPrograms;
 ResourceManager::TexturesMap ResourceManager::m_textures;
 ResourceManager::SpritesMap ResourceManager::m_sprites;
-ResourceManager::AnimatedSpritesMap ResourceManager::m_animatedSprites;
 std::string ResourceManager::m_path;
 std::vector<std::vector<std::string>> ResourceManager::m_levels;
 	
@@ -144,11 +142,11 @@ std::shared_ptr<RenderEngine::Texture> ResourceManager::loadTextureAtlas(std::st
 		unsigned int currentTextureOffsetY = textureHeight;
 		for (auto& currentSubTextureName : subTextures)
 		{
-			glm::vec2 lefBottomUV(static_cast<float>(currentTextureOffsetX) / textureWidth,
-								  static_cast<float>(currentTextureOffsetY - subTextureHeight) / textureHeight);
+			glm::vec2 lefBottomUV(static_cast<float>(currentTextureOffsetX + 0.01f) / textureWidth,
+								  static_cast<float>(currentTextureOffsetY - subTextureHeight + 0.01f) / textureHeight);
 
-			glm::vec2 rightTopUV(static_cast<float>(currentTextureOffsetX + subTextureWidth) / textureWidth,
-								 static_cast<float>(currentTextureOffsetY) / textureHeight);
+			glm::vec2 rightTopUV(static_cast<float>(currentTextureOffsetX + subTextureWidth - 0.01f) / textureWidth,
+								 static_cast<float>(currentTextureOffsetY - 0.01f) / textureHeight);
 
 			pTexture->addSubTexture(std::move(currentSubTextureName), lefBottomUV, rightTopUV);
 
@@ -201,46 +199,6 @@ std::shared_ptr<RenderEngine::Sprite> ResourceManager::getSprite(const std::stri
 	}
 
 	std::cerr << "Error::ResourceManager::getSprite -> Can not find texture " << spriteName << std::endl;
-
-	return nullptr;
-}
-
-std::shared_ptr<RenderEngine::AnimatedSprite> ResourceManager::loadAnimatedSprite(const std::string& spriteName,
-																	  const std::string& shaderName,
-																	  const std::string& textureName,
-																	  const std::string& subTextureName)
-{
-	auto pTexture = getTexture(textureName);
-	if (!pTexture)
-	{
-		std::cerr << "Error::ResourceManager::loadAnimatedSprite -> Can not find texture " << textureName
-			<< " for the sprite " << spriteName << std::endl;
-	}
-
-	auto pShader = getShaderProgram(shaderName);
-	if (!pShader)
-	{
-		std::cerr << "Error::ResourceManager::loadAnimatedSprite -> Can not find shader " << shaderName
-			<< " for the sprite " << spriteName << std::endl;
-	}
-
-	std::shared_ptr<RenderEngine::AnimatedSprite> newSprite = m_animatedSprites.emplace(spriteName,
-		std::make_shared<RenderEngine::AnimatedSprite>(pTexture,
-													   pShader,
-													   subTextureName)).first->second;
-
-	return newSprite;
-}
-
-std::shared_ptr<RenderEngine::AnimatedSprite> ResourceManager::getAnimatedSprite(const std::string& spriteName)
-{
-	auto it = m_animatedSprites.find(spriteName);
-	if (it != m_animatedSprites.end())
-	{
-		return it->second;
-	}
-
-	std::cerr << "Error::ResourceManager::getAnimatedSprite -> Can not find animated sprite " << spriteName << std::endl;
 
 	return nullptr;
 }
@@ -299,43 +257,6 @@ bool ResourceManager::loadJSONResources(const std::string& JSONPath)
 		}
 	}
 
-	auto animatedSpritesIt = document.FindMember("animatedSprites");
-	if (animatedSpritesIt != document.MemberEnd())
-	{
-		for (const auto& currentAnimatedSprite : animatedSpritesIt->value.GetArray())
-		{
-			const std::string name = currentAnimatedSprite["name"].GetString();
-			const std::string textureAtlas = currentAnimatedSprite["textureAtlas"].GetString();
-			const std::string shader = currentAnimatedSprite["shader"].GetString();
-			const std::string initialSubTexture = currentAnimatedSprite["initialSubTexture"].GetString();
-			
-			auto pAnimatedSprite = loadAnimatedSprite(name, shader, textureAtlas, initialSubTexture);
-			if (!pAnimatedSprite)
-			{
-				continue;
-			}
-
-			auto statesArray = currentAnimatedSprite["states"].GetArray();
-
-			for (const auto& currentState : statesArray)
-			{ 
-				const std::string stateName = currentState["stateName"].GetString();
-				std::vector<std::pair<std::string, uint64_t>> frames;
-				auto framesArray = currentState["frames"].GetArray();
-				frames.reserve(framesArray.Size());
-
-				for (const auto& currentFrame : framesArray)
-				{
-					const std::string subTexture = currentFrame["subTexture"].GetString();
-					const uint64_t duration = currentFrame["duration"].GetUint64();
-					frames.emplace_back(std::pair<std::string, uint64_t>(subTexture, duration));
-				}
-				std::cout << stateName << std::endl;
-				pAnimatedSprite->insertState(stateName, std::move(frames));
-			}
-		}
-	}
-
 	auto spritesIt = document.FindMember("sprites");
 	if (spritesIt != document.MemberEnd())
 	{
@@ -344,12 +265,33 @@ bool ResourceManager::loadJSONResources(const std::string& JSONPath)
 			const std::string name = currentSprite["name"].GetString();
 			const std::string textureAtlas = currentSprite["textureAtlas"].GetString();
 			const std::string shader = currentSprite["shader"].GetString();
-			const std::string subTextureName = currentSprite["subTextureName"].GetString();
+			const std::string subTextureName = currentSprite["initialSubTexture"].GetString();
 
 			auto pSprite = loadSprite(name, shader, textureAtlas, subTextureName);
 			if (!pSprite)
 			{
 				continue;
+			}
+
+			auto framesIt = currentSprite.FindMember("frames");
+
+			if (framesIt != currentSprite.MemberEnd())
+			{
+				const auto framesArray = framesIt->value.GetArray();
+				std::vector<RenderEngine::Sprite::FrameDescription> framesDescriptions;
+				framesDescriptions.reserve(framesArray.Size());
+
+				for (const auto& currentFrame : framesArray)
+				{
+					const std::string subTextureStr = currentFrame["subTexture"].GetString();
+					const uint64_t duration = currentFrame["duration"].GetUint64();
+
+					const auto pTextureAtlas = getTexture(textureAtlas);
+					const auto pSubTexture = pTextureAtlas->getSubTexture(subTextureStr);
+
+					framesDescriptions.emplace_back(pSubTexture.leftBottomUV, pSubTexture.rightTopUV, duration);
+				}
+				pSprite->insertFrames(std::move(framesDescriptions));
 			}
 		}
 	}
@@ -391,7 +333,6 @@ void ResourceManager::unloadAllResources()
 {
 	m_shaderPrograms.clear();
 	m_path.clear();
-	m_animatedSprites.clear();
 	m_sprites.clear(); 
 	m_textures.clear();
 }

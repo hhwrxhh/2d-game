@@ -12,8 +12,6 @@ add_executable(${PROJECT_NAME}
 				src/Renderer/Texture.h
 				src/Renderer/Sprite.cpp
 				src/Renderer/Sprite.h
-				src/Renderer/AnimatedSprite.cpp
-				src/Renderer/AnimatedSprite.h
 				src/Renderer/VertexBuffer.cpp
 				src/Renderer/VertexBuffer.h
 				src/Renderer/VertexArray.cpp
@@ -24,6 +22,8 @@ add_executable(${PROJECT_NAME}
 				src/Renderer/VertexBufferLayout.h
 				src/Renderer/Renderer.cpp
 				src/Renderer/Renderer.h 
+				src/Renderer/SpriteAnimator.cpp
+				src/Renderer/SpriteAnimator.h
 
 				
 				src/Resources/ResourceManager.cpp
