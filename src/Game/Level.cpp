@@ -2,6 +2,7 @@
 
 #include "../Resources/ResourceManager.h"
 #include "GameObjects/BrickWall.h"
+#include "GameObjects/BetonWall.h"
 
 const unsigned int BLOCK_SIZE = 16;
 
@@ -19,6 +20,18 @@ std::shared_ptr<IGameObject> createGameObjectFromDescription(const char descript
 		return std::make_shared<BrickWall>(BrickWall::EBrickWallType::Top, position, size, rotation);
 	case '4':
 		return std::make_shared<BrickWall>(BrickWall::EBrickWallType::All, position, size, rotation);
+
+	case '5':
+		return std::make_shared<BetonWall>(BetonWall::EBetonWallType::TopRight, position, size, rotation);
+	case '6':
+		return std::make_shared<BetonWall>(BetonWall::EBetonWallType::Bottom, position, size, rotation);
+	case '7':
+		return std::make_shared<BetonWall>(BetonWall::EBetonWallType::Left, position, size, rotation);
+	case '8':
+		return std::make_shared<BetonWall>(BetonWall::EBetonWallType::Top, position, size, rotation);
+	case '9':
+		return std::make_shared<BetonWall>(BetonWall::EBetonWallType::All, position, size, rotation);
+
 	case 'G':
 		return std::make_shared<BrickWall>(BrickWall::EBrickWallType::BottomLeft, position, size, rotation);
 	case 'H':
@@ -28,8 +41,6 @@ std::shared_ptr<IGameObject> createGameObjectFromDescription(const char descript
 	case 'J':
 		return std::make_shared<BrickWall>(BrickWall::EBrickWallType::TopRight, position, size, rotation);
 	case 'D':
-		return nullptr;
-	case 'E':
 		return nullptr;
 	default:
 		std::cerr << "Error::Level::createGameObjectFromDescription -> Failed to find GameObject description " << description << std::endl;

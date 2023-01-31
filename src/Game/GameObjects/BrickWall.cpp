@@ -9,6 +9,11 @@ BrickWall::BrickWall(const EBrickWallType eBrickWallType, const glm::vec2& posit
 						   EBrickState::Destroyed,
 						   EBrickState::Destroyed,
 						   EBrickState::Destroyed}
+	, m_blockOffesets{ glm::vec2(0.f, m_size.y / 2.f),
+					   glm::vec2(m_size.x / 2.f, m_size.y / 2.f),
+					   glm::vec2(0.f, 0.f),
+					   glm::vec2(m_size.x / 2.f, 0.f)
+}
 {
 	m_sprites[static_cast<size_t>(EBrickState::All)] = ResourceManager::getSprite("brickWall_All");
 	m_sprites[static_cast<size_t>(EBrickState::TopLeft)] = ResourceManager::getSprite("brickWall_TopLeft");
@@ -66,18 +71,10 @@ BrickWall::BrickWall(const EBrickWallType eBrickWallType, const glm::vec2& posit
 
 void BrickWall::renderBrick(const EBrickLocation eBrickLocation) const
 {
-	static const std::array<glm::vec2, 4> offesets =
-	{
-		glm::vec2(0.f, m_size.y / 2.f),
-		glm::vec2(m_size.x / 2.f, m_size.y / 2.f),
-		glm::vec2(0.f, 0.f),
-		glm::vec2(m_size.x / 2.f, 0.f)
-	};
-
 	const EBrickState state = m_eCurrentBrickState[static_cast<size_t>(eBrickLocation)];
 	if (state != EBrickState::Destroyed)
 	{
-		m_sprites[static_cast<size_t>(state)]->render(m_position + offesets[static_cast<size_t>(eBrickLocation)], m_size / 2.f, m_rotation);
+		m_sprites[static_cast<size_t>(state)]->render(m_position + m_blockOffesets[static_cast<size_t>(eBrickLocation)], m_size / 2.f, m_rotation);
 	}
 }
 void BrickWall::render() const

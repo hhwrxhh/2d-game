@@ -42,6 +42,49 @@
         "nothing"
       ]
     },
+	{
+		"name" 				: "mapTextureAtlas_16x16",
+		"filePath"  		: "res/textures/map_16x16.png",
+		"subTextureWidth"   : 16,
+		"subTextureHeight"  : 16,
+		"subTextures" : [
+			"eagle",
+			"eagle_dead",
+			"respawn1",
+			"respawn2",
+			"respawn3",
+			"respawn4",
+			"shield1",
+			"shield2",
+			
+			"bigExplosion1_top_left",
+			"bigExplosion1_top_right",
+			"bigExplosion2_top_left",
+			"bigExplosion2_top_right",
+			"explosion1",
+			"explosion2",
+			"explosion3",
+			"reserved1",
+			
+			"bigExplosion1_bottom_left",
+			"bigExplosion1_bottom_right",
+			"bigExplosion2_bottom_left",
+			"bigExplosion2_bottom_right",
+			"reserved2",
+			"reserved3",
+			"reserved4",
+			"reserved5",
+			
+			"bonus_helmet",
+			"bonus_clock",
+			"bonus_shovel",
+			"bonus_star",
+			"bonus_grenade",
+			"bonus_tank",
+			"bonus_gun",
+			"reserved6"
+		]
+	},
     {
       "name": "tanksTextureAtlas",
       "filePath": "res/textures/tanks.png",
@@ -152,6 +195,54 @@
 		"shader"            : "SpriteShader ",
 		"initialSubTexture" : "brickWall_TopRight_Bottom"
 	},
+	{
+		"name"              : "betonWall",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "betonWall"
+	},
+	{
+		"name"              : "trees",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "trees"
+	},
+	{
+		"name"              : "ice",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "ice"
+	},
+	{
+		"name"              : "border",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "border"
+	},
+	{
+		"name"              : "bullet_Top",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "bullet_Top"
+	},
+	{
+		"name"              : "bullet_Bottom",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "bullet_Bottom"
+	},
+	{
+		"name"              : "bullet_Left",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "bullet_Left"
+	},
+	{
+		"name"              : "bullet_Right",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "bullet_Right"
+	},
     {
       "name": "tankSprite_top",
       "textureAtlas": "tanksTextureAtlas",
@@ -220,20 +311,20 @@
   "levels": [
     {
       "description": [
-        "DDDDDDDDDDDDD",
-        "D1D1D1D1D1D1D",
-        "D4D4D4D4D4D4D",
-        "D4D4D4D4D4D4D",
-        "D4D4D4D4D4D4D",
-        "D4D4D3D3D4D4D",
-        "D3D3D1D1D3D3D",
-        "1D11D3D3D11D1",
-        "DD33D1D1D33DD",
-        "D1D1D444D1D1D",
-        "D4D4D4D4D4D4D",
-        "D4D4D3D3D4D4D",
-        "D4D4DH1GD4D4D",
-        "DDDDD0E2DDDDD"
+       "DDDDDDDDDDDDD",
+	   "D1D1D1D1D1D1D",
+	   "D4D4D4D4D4D4D",
+	   "D4D4D4D4D4D4D",
+	   "D4D4D494D4D4D",
+	   "D4D4D3D3D4D4D",
+	   "D3D3D1D1D3D3D",
+	   "1D11D3D3D11D1",
+	   "8D33D1D1D33D8",
+	   "D1D1D444D1D1D",
+	   "D4D4D4D4D4D4D",
+	   "D4D4D3D3D4D4D",
+	   "D4D4DH1GD4D4D",
+	   "DDDDD0E2DDDDD"
       ]
     }
   ]
