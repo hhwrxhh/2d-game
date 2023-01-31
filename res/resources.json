@@ -243,6 +243,38 @@
 		"shader"            : "SpriteShader",
 		"initialSubTexture" : "bullet_Right"
 	},
+	{
+		"name"              : "eagle",
+		"textureAtlas"      : "mapTextureAtlas_16x16",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "eagle"
+	},
+	{
+		"name"              : "eagle_dead",
+		"textureAtlas"      : "mapTextureAtlas_16x16",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "eagle_dead"
+	},
+	{
+		"name"              : "water",
+		"textureAtlas"      : "mapTextureAtlas_8x8",
+		"shader"            : "SpriteShader",
+		"initialSubTexture" : "water1",
+		"frames" : [
+			{
+				"subTexture" : "water1",
+				"duration"   : 500000000
+			},
+			{
+				"subTexture" : "water2",
+				"duration"   : 500000000
+			},
+			{
+				"subTexture" : "water3",
+				"duration"   : 500000000 
+			}
+		]
+	},
     {
       "name": "tankSprite_top",
       "textureAtlas": "tanksTextureAtlas",
@@ -326,6 +358,24 @@
 	   "D4D4DH1GD4D4D",
 	   "DDDDD0E2DDDDD"
       ]
-    }
+    },
+	{
+	 "description" : [
+	   "MDDDDDNDDDDDO",
+	   "D00D11D22D33D",
+	   "D0DD1DD2DD3DD",
+	   "DDDDDDDDDDDDD",
+	   "D44D55D66D77D",
+	   "D4DD5DD6DD7DD",
+	   "DDDDDDDDDDDDD",
+	   "D88D99DAADBBD",
+	   "D8DD9DDADDBDD",
+	   "DDDDDDDDDDDDD",
+	   "DCCDGGDHHDIID",
+	   "DCDDGDDHDDDDD",
+	   "DDDDDH1GDDJJD",
+	   "DDDDK0E2LDDDD"
+	 ]
+	}
   ]
 }
