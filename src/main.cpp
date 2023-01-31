@@ -93,6 +93,7 @@ int main(int argc, char** argv)
 	std::cout << "Version of ... " << glGetString(GL_VENDOR) << std::endl;
 	
     RenderEngine::Renderer::setClearColor(0.f, 0.f, 0.f, 1);
+    RenderEngine::Renderer::setDepthTest(true);
     
     {
         ResourceManager::setExecutablePath(argv[0]);
