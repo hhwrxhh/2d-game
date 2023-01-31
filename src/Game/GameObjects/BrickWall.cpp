@@ -77,15 +77,15 @@ void BrickWall::renderBrick(const EBrickLocation eBrickLocation) const
 	const EBrickState state = m_eCurrentBrickState[static_cast<size_t>(eBrickLocation)];
 	if (state != EBrickState::Destroyed)
 	{
-		m_sprites[static_cast<size_t>(state)]->render(m_position + offesets[static_cast<size_t>(eBrickLocation)], m_size, m_rotation);
+		m_sprites[static_cast<size_t>(state)]->render(m_position + offesets[static_cast<size_t>(eBrickLocation)], m_size / 2.f, m_rotation);
 	}
 }
 void BrickWall::render() const
 {
-	renderBrick(EBrickLocation::BottomLeft); 
-	renderBrick(EBrickLocation::BottomRight); 
 	renderBrick(EBrickLocation::TopLeft); 
 	renderBrick(EBrickLocation::TopRight); 
+	renderBrick(EBrickLocation::BottomLeft); 
+	renderBrick(EBrickLocation::BottomRight); 
 }
 
 void BrickWall::update(uint64_t delta)

@@ -41,6 +41,8 @@ add_executable(${PROJECT_NAME}
 				src/Game/GameObjects/BrickWall.cpp
 				src/Game/GameObjects/BrickWall.h
 				
+				res/resources.json
+				
 				src/Resources/stb_image.h)
  
 set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT ${PROJECT_NAME})
