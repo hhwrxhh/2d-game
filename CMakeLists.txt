@@ -32,6 +32,9 @@ add_executable(${PROJECT_NAME}
 				src/System/Timer.cpp
 				src/System/Timer.h
 				
+				src/Physics/PhysicsEngine.cpp
+				src/Physics/PhysicsEngine.h
+				
 
 				src/Game/Game.cpp
 				src/Game/Game.h

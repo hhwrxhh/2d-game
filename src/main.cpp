@@ -9,6 +9,7 @@
 
 #include "Game/Game.h"
 #include "Resources/ResourceManager.h"
+#include "Physics/PhysicsEngine.h"
 
 #include "Renderer/Renderer.h"
 
@@ -97,7 +98,9 @@ int main(int argc, char** argv)
     
     {
         ResourceManager::setExecutablePath(argv[0]);
+        PhysicsEngine::init();
         g_game->init();
+
         glfwSetWindowSize(pWindow, static_cast<int>(2 * g_game->getCurrentLevelWidth()), static_cast<int>(2 * g_game->getCurrentLevelHeight()));
         
         auto lastTime = std::chrono::high_resolution_clock::now();
@@ -108,7 +111,9 @@ int main(int argc, char** argv)
             auto currentTime = std::chrono::high_resolution_clock::now();
             double duration = std::chrono::duration<double, std::milli>(currentTime - lastTime).count();
             lastTime = currentTime;
+
             g_game->update(duration);
+            PhysicsEngine::update(duration);
 
             /* Render here */
             RenderEngine::Renderer::clear();

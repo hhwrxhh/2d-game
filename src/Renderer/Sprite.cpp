@@ -107,7 +107,6 @@ namespace RenderEngine
 	void Sprite::insertFrames(std::vector<FrameDescription> framesDescriptions)
 	{
 		m_framesDescriptions = std::move(framesDescriptions);
-		std::cout << m_framesDescriptions.size() << std::endl;
 	}
 	double Sprite::getFrameDuration(const size_t frameId) const
 	{

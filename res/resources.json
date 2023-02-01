@@ -295,11 +295,11 @@
 		"frames" : [
 			{
 				"subTexture" : "shield1",
-				"duration"   : 500
+				"duration"   : 50
 			},
 			{
 				"subTexture" : "shield2",
-				"duration"   : 500
+				"duration"   : 50
 			}
 		]
 	},
