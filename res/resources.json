@@ -256,6 +256,54 @@
 		"initialSubTexture" : "eagle_dead"
 	},
 	{
+		"name" 				: "respawn",
+		"textureAtlas" 		: "mapTextureAtlas_16x16",
+		"shader" 			: "SpriteShader",
+		"initialSubTexture" : "respawn1",
+		"frames" : [
+			{
+				"subTexture" : "respawn1",
+				"duration"   : 100
+			},
+			{
+				"subTexture" : "respawn2",
+				"duration"   : 100
+			},
+			{
+				"subTexture" : "respawn3",
+				"duration"   : 100
+			},
+			{
+				"subTexture" : "respawn4",
+				"duration"   : 100
+			},
+			{
+				"subTexture" : "respawn3",
+				"duration"   : 100
+			},
+			{
+				"subTexture" : "respawn2",
+				"duration"   : 100
+			}
+		]
+	},
+	{
+		"name" 				: "shield",
+		"textureAtlas" 		: "mapTextureAtlas_16x16",
+		"shader" 			: "SpriteShader",
+		"initialSubTexture" : "shield1",
+		"frames" : [
+			{
+				"subTexture" : "shield1",
+				"duration"   : 500
+			},
+			{
+				"subTexture" : "shield2",
+				"duration"   : 500
+			}
+		]
+	},
+	{
 		"name"              : "water",
 		"textureAtlas"      : "mapTextureAtlas_8x8",
 		"shader"            : "SpriteShader",
@@ -263,15 +311,15 @@
 		"frames" : [
 			{
 				"subTexture" : "water1",
-				"duration"   : 500000000
+				"duration"   : 500
 			},
 			{
 				"subTexture" : "water2",
-				"duration"   : 500000000
+				"duration"   : 500
 			},
 			{
 				"subTexture" : "water3",
-				"duration"   : 500000000 
+				"duration"   : 500 
 			}
 		]
 	},
@@ -283,11 +331,11 @@
       "frames": [
         {
           "subTexture": "yellowType_Top1",
-          "duration": 500000000
+          "duration": 500
         },
         {
           "subTexture": "yellowType_Top2",
-          "duration": 500000000
+          "duration": 500
         }
       ]
     },
@@ -299,11 +347,11 @@
       "frames": [
         {
           "subTexture": "yellowType_Bottom1",
-          "duration": 500000000
+          "duration": 500
         },
         {
           "subTexture": "yellowType_Bottom2",
-          "duration": 500000000
+          "duration": 500
         }
       ]
     },
@@ -315,11 +363,11 @@
       "frames": [
         {
           "subTexture": "yellowType_Left1",
-          "duration": 500000000
+          "duration": 500
         },
         {
           "subTexture": "yellowType_Left2",
-          "duration": 500000000
+          "duration": 500
         }
       ]
     },
@@ -331,11 +379,11 @@
       "frames": [
         {
           "subTexture": "yellowType_Right1",
-          "duration": 500000000
+          "duration": 500
         },
         {
           "subTexture": "yellowType_Right2",
-          "duration": 500000000
+          "duration": 500
         }
       ]
     }

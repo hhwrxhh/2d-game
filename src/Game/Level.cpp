@@ -137,7 +137,7 @@ void Level::render() const
 	}
 }
 
-void Level::update(const uint64_t delta) const
+void Level::update(const double delta)
 {
 	for (const auto& currentMapObject : m_mapObject)
 	{
@@ -147,7 +147,6 @@ void Level::update(const uint64_t delta) const
 		}
 	}
 }
-
 size_t Level::getLevelWidth() const
 {
 	return (m_width + 3) * BLOCK_SIZE;

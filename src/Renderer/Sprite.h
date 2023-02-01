@@ -1,6 +1,7 @@
 #pragma once
 #include <memory>
 #include <string>
+#include <typeinfo>
 
 #include <glad/glad.h>
 #include <glm/vec2.hpp>
@@ -19,7 +20,7 @@ namespace RenderEngine
 
 		struct FrameDescription
 		{
-			FrameDescription(const glm::vec2 _leftBottomUV, const glm::vec2 _rightTopUV, uint64_t _duration)
+			FrameDescription(const glm::vec2 _leftBottomUV, const glm::vec2 _rightTopUV, double _duration)
 				: leftBottomUV(_leftBottomUV), 
 			      rightTopUV(_rightTopUV),
 				  duration(_duration)
@@ -27,7 +28,7 @@ namespace RenderEngine
 
 			glm::vec2 leftBottomUV;
 			glm::vec2 rightTopUV;
-			uint64_t duration;
+			double duration;
 		};
 
 		Sprite(std::shared_ptr<Texture> pTexture, std::shared_ptr<ShaderProgram> pShaderProgram,
@@ -40,7 +41,7 @@ namespace RenderEngine
 		void render(const glm::vec2& position, const glm::vec2& size, const float rotation, const float layer = 0, const size_t frameId = 0) const;
 		void insertFrames(std::vector<FrameDescription> framesDescriptions);
 
-		uint64_t getFrameDuration(const size_t frameId) const;
+		double getFrameDuration(const size_t frameId) const;
 		size_t getFramesCount() const;
 
 	protected:

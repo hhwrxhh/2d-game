@@ -7,7 +7,7 @@ class IGameObject
 public:
 	IGameObject(const glm::vec2& position, const glm::vec2& size, const float rotation, const float layer);
 	virtual void render() const = 0;
-	virtual void update(uint64_t delta) { };
+	virtual void update(double delta) { };
 	virtual ~IGameObject();
 
 
