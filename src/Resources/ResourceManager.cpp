@@ -142,7 +142,7 @@ std::shared_ptr<RenderEngine::Texture> ResourceManager::loadTextureAtlas(std::st
 		unsigned int currentTextureOffsetY = textureHeight;
 		for (auto& currentSubTextureName : subTextures)
 		{
-			glm::vec2 lefBottomUV(static_cast<float>(currentTextureOffsetX + 0.01f) / textureWidth,
+			glm::vec2 lefBottomUV(static_cast<float>(  currentTextureOffsetX + 0.01f) / textureWidth,
 								  static_cast<float>(currentTextureOffsetY - subTextureHeight + 0.01f) / textureHeight);
 
 			glm::vec2 rightTopUV(static_cast<float>(currentTextureOffsetX + subTextureWidth - 0.01f) / textureWidth,
