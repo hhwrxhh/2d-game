@@ -43,6 +43,8 @@ Tank::Tank(const double maxVelocity,
 			m_hasShield = false;
 		}
 	);
+
+	m_colliders.emplace_back(glm::vec2(0), m_size);
 }
 
 void Tank::render() const

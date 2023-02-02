@@ -1,6 +1,5 @@
 #pragma once
 
-
 #include <iostream>
 #include <vector>
 #include <string>
@@ -25,10 +24,14 @@ public:
 	const glm::ivec2& getEnemyRespawn_1() const { return m_enemyRespawn_1; }
 	const glm::ivec2& getEnemyRespawn_2() const { return m_enemyRespawn_2; }
 	const glm::ivec2& getEnemyRespawn_3() const { return m_enemyRespawn_3; }
+
+	std::vector<std::shared_ptr<IGameObject>> getObjectsInArea(const glm::vec2& bottomLeft, const glm::vec2& topRight);
  
 private:
-	unsigned int m_width;
-	unsigned int m_height;
+	unsigned int m_widthBlocks;
+	unsigned int m_heightBlocks;
+	unsigned int m_widthPixels = 0;
+	unsigned int m_heightPixels = 0;
 
 	glm::ivec2 m_playerRespawn_1;
 	glm::ivec2 m_playerRespawn_2;
