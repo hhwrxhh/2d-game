@@ -304,6 +304,27 @@
 			]
 		},
 		{
+			"name" 				: "explosion",
+			"textureAtlas" 		: "mapTextureAtlas_16x16",
+			"shader" 			: "SpriteShader",
+			"initialSubTexture" : "explosion1",
+			"frames" : [
+				{
+					"subTexture" : "explosion1",
+					"duration"   : 150
+				},
+				{
+					"subTexture" : "explosion2",
+					"duration"   : 150
+				}
+				,
+				{
+					"subTexture" : "explosion3",
+					"duration"   : 150
+				}
+			]
+		},
+		{
 			"name": "water",
 			"textureAtlas": "mapTextureAtlas_8x8",
 			"shader": "SpriteShader",
