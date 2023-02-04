@@ -59,6 +59,8 @@ add_executable(${PROJECT_NAME}
 				src/Game/GameObjects/Eagle.h
 				src/Game/GameObjects/Border.cpp
 				src/Game/GameObjects/Border.h
+				src/Game/GameObjects/Bullet.cpp
+				src/Game/GameObjects/Bullet.h
 				
 				res/resources.json
 				
