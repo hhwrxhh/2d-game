@@ -39,9 +39,9 @@ public:
 		TopLeft_BottomRight,
 		Right,
 		Top_BottomRight,
+		Bottom,
 		TopLeft_Bottom,
 		TopRight_Bottom,
-		Bottom,
 		Destroyed
 	};
 
@@ -63,6 +63,5 @@ private:
 	std::array<glm::vec2, 4> m_blockOffesets;
 	std::array<std::shared_ptr<RenderEngine::Sprite>, 15> m_sprites;
 	std::array<EBrickState, 4> m_eCurrentBrickState;
-
 
 };

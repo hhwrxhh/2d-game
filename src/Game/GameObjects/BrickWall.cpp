@@ -12,8 +12,7 @@ BrickWall::BrickWall(const EBrickWallType eBrickWallType, const glm::vec2& posit
 	, m_blockOffesets{ glm::vec2(0.f, m_size.y / 2.f),
 					   glm::vec2(m_size.x / 2.f, m_size.y / 2.f),
 					   glm::vec2(0.f, 0.f),
-					   glm::vec2(m_size.x / 2.f, 0.f)
-}
+					   glm::vec2(m_size.x / 2.f, 0.f)}
 {
 	m_sprites[static_cast<size_t>(EBrickState::All)] = ResourceManager::getSprite("brickWall_All");
 	m_sprites[static_cast<size_t>(EBrickState::TopLeft)] = ResourceManager::getSprite("brickWall_TopLeft");
@@ -27,53 +26,51 @@ BrickWall::BrickWall(const EBrickWallType eBrickWallType, const glm::vec2& posit
 	m_sprites[static_cast<size_t>(EBrickState::TopLeft_BottomRight)] = ResourceManager::getSprite("brickWall_TopLeft_BottomRight");
 	m_sprites[static_cast<size_t>(EBrickState::Right)] = ResourceManager::getSprite("brickWall_Right");
 	m_sprites[static_cast<size_t>(EBrickState::Top_BottomRight)] = ResourceManager::getSprite("brickWall_Top_BottomRight");
+	m_sprites[static_cast<size_t>(EBrickState::Bottom)] = ResourceManager::getSprite("brickWall_Bottom");
 	m_sprites[static_cast<size_t>(EBrickState::TopLeft_Bottom)] = ResourceManager::getSprite("brickWall_TopLeft_Bottom");
 	m_sprites[static_cast<size_t>(EBrickState::TopRight_Bottom)] = ResourceManager::getSprite("brickWall_TopRight_Bottom");
-	m_sprites[static_cast<size_t>(EBrickState::Bottom)] = ResourceManager::getSprite("brickWall_Bottom");
 
 	switch (eBrickWallType)
 	{
-	case BrickWall::EBrickWallType::All:
+	case EBrickWallType::All:
 		m_eCurrentBrickState.fill(EBrickState::All);
 		m_colliders.emplace_back(glm::vec2(0), m_size);
 		break;
-	case BrickWall::EBrickWallType::Top:
+	case EBrickWallType::Top:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::TopLeft)] = EBrickState::All;
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::TopRight)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(0, m_size.y / 2), m_size);
 		break;
-	case BrickWall::EBrickWallType::Bottom:
+	case EBrickWallType::Bottom:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::BottomLeft)] = EBrickState::All;
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::BottomRight)] = EBrickState::All;
-		m_colliders.emplace_back(glm::vec2(0), glm::vec2(m_size.x, m_size.y / 2));
+		m_colliders.emplace_back(glm::vec2(0), glm::vec2(m_size.x / 2, m_size.y / 2));
 		break;
-	case BrickWall::EBrickWallType::Left:
+	case EBrickWallType::Left:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::TopLeft)] = EBrickState::All;
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::BottomLeft)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(0), glm::vec2(m_size.x / 2, m_size.y));
 		break;
-	case BrickWall::EBrickWallType::Right:
+	case EBrickWallType::Right:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::TopRight)] = EBrickState::All;
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::BottomRight)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(m_size.x / 2, 0), m_size);
 		break;
-	case BrickWall::EBrickWallType::TopLeft:
+	case EBrickWallType::TopLeft:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::TopLeft)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(0, m_size.y / 2), glm::vec2(m_size.x / 2, m_size.y));
 		break;
-	case BrickWall::EBrickWallType::TopRight:
+	case EBrickWallType::TopRight:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::TopRight)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(m_size.x / 2, m_size.y / 2), m_size);
 		break;
-	case BrickWall::EBrickWallType::BottomLeft:
+	case EBrickWallType::BottomLeft:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::BottomLeft)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(0), glm::vec2(m_size.x / 2, m_size.y / 2));
 		break;
-	case BrickWall::EBrickWallType::BottomRight:
+	case EBrickWallType::BottomRight:
 		m_eCurrentBrickState[static_cast<size_t>(EBrickLocation::BottomRight)] = EBrickState::All;
 		m_colliders.emplace_back(glm::vec2(m_size.x / 2, 0), glm::vec2(m_size.x, m_size.y / 2));
-		break;
-	default:
 		break;
 	}
 }

@@ -34,7 +34,7 @@ Tank::Tank(const double maxVelocity,
 			m_shieldTimer.start(2000);
 		}
 	);
-	m_respawnTimer.start(2000);
+	m_respawnTimer.start(1500);
 	
 	m_shieldTimer.setCallBack
 	(

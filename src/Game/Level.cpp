@@ -125,15 +125,17 @@ Level::Level(const std::vector<std::string>& levelDescription)
 		currentBottomOffset -= BLOCK_SIZE;
 	}
 	 
-	// botton border
+	// bottom border
 	m_mapObject.emplace_back(std::make_shared<Border>(glm::vec2(BLOCK_SIZE, 0.f), glm::vec2(m_widthBlocks * BLOCK_SIZE, BLOCK_SIZE / 2.f), 0.f, 0.f));
+
 	// top border
 	m_mapObject.emplace_back(std::make_shared<Border>(glm::vec2(BLOCK_SIZE, m_heightBlocks * BLOCK_SIZE + BLOCK_SIZE / 2.f), glm::vec2(m_widthBlocks * BLOCK_SIZE, BLOCK_SIZE / 2.f), 0.f, 0.f));
+
 	// left border
 	m_mapObject.emplace_back(std::make_shared<Border>(glm::vec2(0.f, 0.f), glm::vec2(BLOCK_SIZE, (m_heightBlocks + 1) * BLOCK_SIZE), 0.f, 0.f));
-	// right border 
-	m_mapObject.emplace_back(std::make_shared<Border>(glm::vec2((m_widthBlocks + 1) * BLOCK_SIZE, 0.f), glm::vec2(BLOCK_SIZE * 2.f, (m_heightBlocks + 1) * BLOCK_SIZE), 0.f, 0.f));
 
+	// right border
+	m_mapObject.emplace_back(std::make_shared<Border>(glm::vec2((m_widthBlocks + 1) * BLOCK_SIZE, 0.f), glm::vec2(BLOCK_SIZE * 2.f, (m_heightBlocks + 1) * BLOCK_SIZE), 0.f, 0.f));
 
 }
 
@@ -179,11 +181,14 @@ std::vector<std::shared_ptr<IGameObject>> Level::getObjectsInArea(const glm::vec
 								 std::clamp(m_heightPixels - topRight.y + BLOCK_SIZE / 2, 0.f, static_cast<float>(m_heightPixels)));
 
 	size_t startX = static_cast<size_t>(floor(bottomLeft_converted.x / BLOCK_SIZE));
-	size_t endX =   static_cast<size_t>(floor(topRight_converted.x / BLOCK_SIZE));
+	size_t endX =   static_cast<size_t>(ceil(topRight_converted.x / BLOCK_SIZE));
 
 	size_t startY = static_cast<size_t>(floor(topRight_converted.y / BLOCK_SIZE));
-	size_t endY = static_cast<size_t>(floor(bottomLeft_converted.y / BLOCK_SIZE));
+	size_t endY = static_cast<size_t>(ceil(bottomLeft_converted.y / BLOCK_SIZE));
 	
+
+	/*std::cout << "startX " << startX << ", endX " << endX << std::endl;
+	std::cout << "startY " << startY << ", endY " << endY << std::endl;*/
 	/*std::cout << "bottomLeft_converted.x " << bottomLeft_converted.x << ", bottomLeft_converted.y " << bottomLeft_converted.y << std::endl;
 	std::cout << "topRight_converted.x " << topRight_converted.x << ", topRight_converted.y " << topRight_converted.y << std::endl;*/
 
@@ -197,6 +202,23 @@ std::vector<std::shared_ptr<IGameObject>> Level::getObjectsInArea(const glm::vec
 				output.push_back(currentObject);
 			} 
 		}
+	}
+
+	if (endX >= m_widthBlocks)
+	{
+		output.push_back(m_mapObject[m_mapObject.size() - 1]);
+	}
+	if (startX <= 1)
+	{
+		output.push_back(m_mapObject[m_mapObject.size() - 2]);
+	}
+	if (startY <= 1)
+	{
+		output.push_back(m_mapObject[m_mapObject.size() - 3]);
+	}
+	if (endY >= m_heightBlocks)
+	{
+		output.push_back(m_mapObject[m_mapObject.size() - 4]);
 	}
 
 	return output;

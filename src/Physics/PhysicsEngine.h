@@ -7,6 +7,7 @@
 
 class IGameObject;
 class Level;
+
 namespace Physics
 {
 	struct AABB // Axis Aligned Bounding Box

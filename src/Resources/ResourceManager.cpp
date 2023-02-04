@@ -142,11 +142,11 @@ std::shared_ptr<RenderEngine::Texture> ResourceManager::loadTextureAtlas(std::st
 		unsigned int currentTextureOffsetY = textureHeight;
 		for (auto& currentSubTextureName : subTextures)
 		{
-			glm::vec2 lefBottomUV(static_cast<float>(  currentTextureOffsetX + 0.01f) / textureWidth,
-								  static_cast<float>(currentTextureOffsetY - subTextureHeight + 0.01f) / textureHeight);
+			glm::vec2 lefBottomUV(static_cast<float>(  currentTextureOffsetX + 0.001f) / textureWidth,
+								  static_cast<float>(currentTextureOffsetY - subTextureHeight + 0.001f) / textureHeight);
 
-			glm::vec2 rightTopUV(static_cast<float>(currentTextureOffsetX + subTextureWidth - 0.01f) / textureWidth,
-								 static_cast<float>(currentTextureOffsetY - 0.01f) / textureHeight);
+			glm::vec2 rightTopUV(static_cast<float>(currentTextureOffsetX + subTextureWidth - 0.001f) / textureWidth,
+								 static_cast<float>(currentTextureOffsetY - 0.001f) / textureHeight);
 
 			pTexture->addSubTexture(std::move(currentSubTextureName), lefBottomUV, rightTopUV);
 
@@ -175,7 +175,7 @@ std::shared_ptr<RenderEngine::Sprite> ResourceManager::loadSprite(const std::str
 			<< " for the sprite " <<  spriteName <<  std::endl;
 	}
 
-	auto pShader = getShaderProgram	(shaderName);
+	auto pShader = getShaderProgram(shaderName);
 	if (!pShader)
 	{
 		std::cerr << "Error::ResourceManager::loadSprite -> Can not find shader " << shaderName
