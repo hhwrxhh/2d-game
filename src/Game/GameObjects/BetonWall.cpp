@@ -19,7 +19,7 @@ BetonWall::BetonWall(const EBetonWallType eBetonWallType, const glm::vec2& posit
     {
     case EBetonWallType::All:
         m_eCurrentBlockState.fill(EBlockState::Enabled);
-        m_colliders.emplace_back(glm::vec2(0), m_size);
+        m_colliders.emplace_back(glm::vec2(0, 0), m_size);
         break;
     case EBetonWallType::Top:
         m_eCurrentBlockState[static_cast<size_t>(EBlockLocation::TopLeft)] = EBlockState::Enabled;

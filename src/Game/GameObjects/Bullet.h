@@ -33,7 +33,6 @@ public:
 	bool isActive() const { return m_isActive; }
 	void update (const double delta) override;
 	void fire (const glm::vec2& position, const glm::vec2& direction);
-	virtual void onCollision() override;
 
 private:
 	EOrientation m_eOrientation;

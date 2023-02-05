@@ -22,7 +22,13 @@ Bullet::Bullet(const double maxVelocity,
     m_isActive(false),
     m_isExplosion(false)
 {
-    m_colliders.emplace_back(glm::vec2(0), m_size);
+    auto onCollsionCallBack = [&](const IGameObject&, const Physics::ECollisionDirection)
+    {
+        setVelocity(0);
+        m_isExplosion = true;
+        m_explosionTimer.start(m_spriteAnimator_explosion.getTotalDuration());
+    };
+    m_colliders.emplace_back(glm::vec2(0), m_size, onCollsionCallBack);
 
     m_explosionTimer.setCallBack
     (
@@ -30,6 +36,7 @@ Bullet::Bullet(const double maxVelocity,
         {
             m_isExplosion = false;
             m_isActive = false;
+            m_spriteAnimator_explosion.reset();
         }
     );
 }
@@ -41,16 +48,16 @@ void Bullet::render() const
         switch (m_eOrientation)
         {
         case EOrientation::Top:
-            m_pSprite_explosion->render(m_position - m_explosionOffset + glm::vec2(0, m_size.y / 2.f), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
+            m_pSprite_explosion->render(m_position - m_explosionOffset + glm::vec2(-4.5f, m_size.y / 2.f), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
             break;
         case EOrientation::Bottom:
-            m_pSprite_explosion->render(m_position - m_explosionOffset - glm::vec2(0, m_size.y / 2.f), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
+            m_pSprite_explosion->render(m_position - m_explosionOffset - glm::vec2(4.5f, m_size.y / 2.f), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
             break;
         case EOrientation::Left:
-            m_pSprite_explosion->render(m_position - m_explosionOffset - glm::vec2(m_size.x / 2.f, 0), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
+            m_pSprite_explosion->render(m_position - m_explosionOffset - glm::vec2(m_size.x / 2.f, 3.5f), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
             break;
         case EOrientation::Right:
-            m_pSprite_explosion->render(m_position - m_explosionOffset + glm::vec2(m_size.x / 2.f, 0), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
+            m_pSprite_explosion->render(m_position - m_explosionOffset + glm::vec2(m_size.x / 2.f, -2.5f), m_explosionSize, m_rotation, m_layer, m_spriteAnimator_explosion.getCurrentFrame());
             break;
         }
     }
@@ -100,10 +107,3 @@ void Bullet::fire(const glm::vec2& position, const glm::vec2& direction)
     setVelocity(m_maxVelocity);
 }
 
-void Bullet::onCollision()
-{
-    setVelocity(0);
-    m_isExplosion = true;
-    m_spriteAnimator_explosion.reset();
-    m_explosionTimer.start(m_spriteAnimator_explosion.getTotalDuration());
-}

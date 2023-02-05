@@ -47,7 +47,7 @@ Tank::Tank(const double maxVelocity,
 		}
 	);
 
-	m_colliders.emplace_back(glm::vec2(0), m_size);
+	m_colliders.emplace_back(glm::vec2(0, 0), m_size);
 	Physics::PhysicsEngine::addDynamicGameObject(m_pCurrentBullet);
 }
 
