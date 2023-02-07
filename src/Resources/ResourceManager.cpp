@@ -20,6 +20,7 @@ ResourceManager::TexturesMap ResourceManager::m_textures;
 ResourceManager::SpritesMap ResourceManager::m_sprites;
 std::string ResourceManager::m_path;
 std::vector<std::vector<std::string>> ResourceManager::m_levels;
+std::vector<std::string> ResourceManager::m_startScreen;
 	
 
 void ResourceManager::setExecutablePath(const std::string& executablePath)
@@ -295,6 +296,31 @@ bool ResourceManager::loadJSONResources(const std::string& JSONPath)
 			}
 		}
 	}
+
+	auto startScreenIt = document.FindMember("start_screen");
+	if (startScreenIt != document.MemberEnd())
+	{
+		const auto descriptionArray = startScreenIt->value.GetArray();
+		m_startScreen.reserve(descriptionArray.Size());
+		size_t maxLength = 0;
+
+		for (const auto& currentRow : descriptionArray)
+		{
+			m_startScreen.emplace_back(currentRow.GetString());
+			if (maxLength < m_startScreen.back().length())
+			{
+				maxLength = m_startScreen.back().length();
+			}
+		}
+		for (auto& currentRow : m_startScreen)
+		{
+			while (currentRow.length() < maxLength)
+			{
+				currentRow.append("F");
+			}
+		}
+	}
+
 	auto levelsIt = document.FindMember("levels");
 	if (levelsIt != document.MemberEnd())
 	{

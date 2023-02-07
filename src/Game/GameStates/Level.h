@@ -6,9 +6,10 @@
 #include <memory>
 #include <glm/vec2.hpp>
 
+#include "IGameState.h"
 class IGameObject;
 
-class Level
+class Level : public IGameState
 {
 public:
 	static constexpr unsigned int BLOCK_SIZE = 16;
@@ -24,6 +25,9 @@ public:
 	const glm::ivec2& getEnemyRespawn_1() const { return m_enemyRespawn_1; }
 	const glm::ivec2& getEnemyRespawn_2() const { return m_enemyRespawn_2; }
 	const glm::ivec2& getEnemyRespawn_3() const { return m_enemyRespawn_3; }
+
+	virtual unsigned int getStateWidth() const override;
+	virtual unsigned int getStateHeight() const override;
 
 	std::vector<std::shared_ptr<IGameObject>> getObjectsInArea(const glm::vec2& bottomLeft, const glm::vec2& topRight);
  

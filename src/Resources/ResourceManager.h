@@ -48,6 +48,8 @@ public:
 	static bool loadJSONResources(const std::string& JSONPath);
 
 	static std::vector<std::vector<std::string>>& getLevels() { return m_levels; }
+	static std::vector<std::string>& getStartScreen() { return m_startScreen; }
+
 
 private:
 	static std::string getFileStr(const std::string& relativeFilePath);
@@ -65,4 +67,5 @@ private:
 	static std::string m_path;
 
 	static std::vector<std::vector<std::string>> m_levels;
+	static std::vector<std::string> m_startScreen;
 };
