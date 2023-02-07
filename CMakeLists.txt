@@ -44,7 +44,7 @@ add_executable(${PROJECT_NAME}
 				src/Game/GameStates/StartScreen.cpp
 				src/Game/GameStates/StartScreen.h
 				src/Game/GameStates/IGameState.cpp
-				src/Game/GameStates/IGameState.h
+				src/Game/GameStates/IGameState.h 
 				 
 				src/Game/GameObjects/Tank.cpp
 				src/Game/GameObjects/Tank.h
@@ -86,7 +86,8 @@ target_link_libraries(${PROJECT_NAME} glfw)
 add_subdirectory(external/glad)
 target_link_libraries(${PROJECT_NAME} glad)
 
-include_directories(external/glm)
+add_subdirectory(external/glm)
+target_link_libraries(${PROJECT_NAME} glm)
 
 include_directories(external/rapidjson/include)
 

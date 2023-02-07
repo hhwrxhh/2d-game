@@ -13,7 +13,9 @@
 
 #include "Renderer/Renderer.h"
 
-glm::ivec2 g_WinSize(13 * 16, 14 * 16); // width * pixels, height  pixels
+static constexpr unsigned int SCALE = 2;
+static constexpr unsigned int BLOCK_SIZE = 16;
+glm::uvec2 g_WinSize(SCALE * 16 * BLOCK_SIZE, SCALE * 15 * BLOCK_SIZE); // width , height  
 std::unique_ptr<Game> g_game = std::make_unique<Game>(g_WinSize);
 
 
@@ -21,25 +23,8 @@ void glfwWinSizeCallback(GLFWwindow* pWindow, int width, int height)
 {
     g_WinSize.x = width;
     g_WinSize.y = height;
+    g_game->setWindowSize(g_WinSize);
     
-    const float map_aspect_ratio = static_cast<float>(g_game->getCurrentLevelWidth()) / g_game->getCurrentLevelHeight();
-
-    unsigned int viewPortWidth = g_WinSize.x;
-    unsigned int viewPortHeight = g_WinSize.y;
-    unsigned int viewPortLeftOffset = 0;
-    unsigned int viewPortRightOffset = 0;
-
-    if (static_cast<float>(g_WinSize.x) / g_WinSize.y > map_aspect_ratio)
-    {
-        viewPortWidth = static_cast<unsigned int>(g_WinSize.y * map_aspect_ratio);
-        viewPortLeftOffset = (g_WinSize.x - viewPortWidth) / 2;
-    }
-    else
-    {
-        viewPortHeight = static_cast<unsigned int>(g_WinSize.x / map_aspect_ratio);
-        viewPortRightOffset = (g_WinSize.y - viewPortHeight) / 2;
-    }
-    RenderEngine::Renderer::setViewport(viewPortWidth, viewPortHeight, viewPortLeftOffset, viewPortRightOffset);
 }
 
 void glfwKeyCallback(GLFWwindow* pWindow, int key, int scanode, int action, int mode)
@@ -101,7 +86,7 @@ int main(int argc, char** argv)
         Physics::PhysicsEngine::init();
         g_game->init();
 
-        glfwSetWindowSize(pWindow, static_cast<int>(2 * g_game->getCurrentLevelWidth()), static_cast<int>(2 * g_game->getCurrentLevelHeight()));
+        //glfwSetWindowSize(pWindow, static_cast<int>(2 * g_game->getCurrentLevelWidth()), static_cast<int>(2 * g_game->getCurrentLevelHeight()));
         
         auto lastTime = std::chrono::high_resolution_clock::now();
 

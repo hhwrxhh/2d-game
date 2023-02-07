@@ -9,4 +9,5 @@ public:
 
 	virtual unsigned int getStateWidth() const = 0;
 	virtual unsigned int getStateHeight() const = 0;
+	virtual void processInput(std::array<bool, 349>& keys) {};
 };
