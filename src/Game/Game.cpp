@@ -37,7 +37,10 @@ void Game::render()
 
 void Game::update(const double delta)
 {
-    switch (m_eCurrentGameState)
+    m_pCurrentGameState->processInput(m_keys);
+    m_pCurrentGameState->update(delta);
+   
+ /*   switch (m_eCurrentGameState)
     {
     case EGameState::StartScreen:
         if (m_keys[GLFW_KEY_ENTER])
@@ -50,7 +53,7 @@ void Game::update(const double delta)
         m_pCurrentGameState->processInput(m_keys);
         m_pCurrentGameState->update(delta);
         break;
-    }
+    }*/
 }
 
 void Game::setKey(const int key, const int action)
@@ -111,7 +114,7 @@ bool Game::init()
     m_pSpriteShaderProgram->use();
     m_pSpriteShaderProgram->setInt("tex", 0);
 
-    m_pCurrentGameState = std::make_shared<StartScreen>(ResourceManager::getStartScreen());
+    m_pCurrentGameState = std::make_shared<StartScreen>(ResourceManager::getStartScreen(), this);
     setWindowSize(m_WinSize);
 
     return true; 

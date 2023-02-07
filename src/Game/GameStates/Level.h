@@ -21,7 +21,7 @@ public:
 	virtual void update(const double delta);
 	size_t getLevelWidth() const;
 	size_t getLevelHeight() const;
-	virtual void processInput(std::array<bool, 349>& keys) override;
+	virtual void processInput(std::array<bool, 349>& keys);
 
 	const glm::ivec2& getPlayerRespawn_1() const { return m_playerRespawn_1; }
 	const glm::ivec2& getPlayerRespawn_2() const { return m_playerRespawn_2; }

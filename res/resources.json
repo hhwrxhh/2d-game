@@ -100,7 +100,17 @@
         "yellowType_Right1",
         "yellowType_Right2"
       ]
-    }
+    },
+	{
+			"name": "menu_128x64",
+			"filePath": "res/textures/menu_128x64.png",
+			"subTextureWidth" : 128,
+			"subTextureHeight" : 64,
+			"subTextures" : [
+				"menu"
+			]
+	}
+	
   ],
 	"sprites": [
 		{
@@ -256,6 +266,12 @@
 			"initialSubTexture": "eagle_dead"
 		},
 		{
+			"name": "menu",
+			"textureAtlas": "menu_128x64",
+			"shader": "SpriteShader",
+			"initialSubTexture": "menu"
+		},
+		{
 			"name": "respawn",
 			"textureAtlas": "mapTextureAtlas_16x16",
 			"shader": "SpriteShader",
@@ -401,7 +417,7 @@
 				{
 					"subTexture": "yellowType_Right1",
 					"duration": 500
-				},
+				},	
 				{
 					"subTexture": "yellowType_Right2",
 					"duration": 500
