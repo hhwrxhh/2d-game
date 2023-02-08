@@ -38,6 +38,8 @@ add_executable(${PROJECT_NAME}
 
 				src/Game/Game.cpp
 				src/Game/Game.h
+				src/Game/AiComponent.cpp
+				src/Game/AiComponent.h
 				
 				src/Game/GameStates/Level.cpp
 				src/Game/GameStates/Level.h
