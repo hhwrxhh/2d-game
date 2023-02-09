@@ -14,4 +14,15 @@ __control.exe folders__
 
 Go to View and uncheck **Hide extenstions for known file types**
 
+# Build
+
+```
+git clone https://github.com/hhwrxhh/2d-game.git
+cd BattleCity
+mkdir build
+cd build
+cmake ..
+cmake --build .
+```
+
 
