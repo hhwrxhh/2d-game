@@ -18,7 +18,7 @@ Go to View and uncheck **Hide extenstions for known file types**
 
 ```
 git clone https://github.com/hhwrxhh/2d-game.git
-cd BattleCity
+cd 2d-game
 mkdir build
 cd build
 cmake ..
